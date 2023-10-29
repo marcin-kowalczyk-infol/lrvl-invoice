@@ -15,7 +15,7 @@ use LogicException;
 final readonly class ApprovalFacade implements ApprovalFacadeInterface
 {
     public function __construct(
-        private Dispatcher $dispatcher
+        private Dispatcher $dispatcher,
     ) {
     }
 
@@ -37,8 +37,12 @@ final readonly class ApprovalFacade implements ApprovalFacadeInterface
 
     private function validate(ApprovalDto $dto): void
     {
-        if (StatusEnum::DRAFT !== StatusEnum::tryFrom($dto->status->value)) {
-            throw new LogicException('approval status is already assigned');
+        if (StatusEnum::DRAFT === StatusEnum::tryFrom($dto->status->value)) {
+            throw new LogicException('invalid approval status');
+        }
+
+        if (!\class_exists($dto->entity)) {
+            throw new LogicException('entity is not supported');
         }
     }
 }

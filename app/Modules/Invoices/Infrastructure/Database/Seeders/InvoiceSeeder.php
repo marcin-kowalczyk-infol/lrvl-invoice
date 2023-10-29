@@ -34,6 +34,7 @@ class InvoiceSeeder extends Seeder
                 'date' => $faker->date(),
                 'due_date' => $faker->date(),
                 'company_id' => $companies->random()->id,
+                'billed_company_id' => $companies->random()->id,
                 'status' => StatusEnum::cases()[array_rand(StatusEnum::cases())],
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -49,7 +50,7 @@ class InvoiceSeeder extends Seeder
 
         $lines = [];
 
-        foreach ($invoices ?? [] as $invoice) {
+        foreach ($invoices as $invoice) {
             $randomNumberOfProducts = rand(1, 5);
             $freshProducts = clone $products;
 

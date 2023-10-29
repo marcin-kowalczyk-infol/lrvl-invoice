@@ -17,10 +17,8 @@
     </rule>
 
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireYodaComparison" />
-    <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses" />
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses" />
     <rule ref="SlevomatCodingStandard.Classes.ClassStructure">
         <exclude-pattern>/tests/</exclude-pattern>
     </rule>
@@ -32,6 +30,4 @@
             <property name="searchAnnotations" value="true"/>
         </properties>
     </rule>
-
-
 </ruleset>

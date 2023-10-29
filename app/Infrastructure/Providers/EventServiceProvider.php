@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Modules\Approval\Api\Events\EntityApproved;
+use App\Modules\Approval\Api\Events\EntityRejected;
+use App\Modules\Invoices\Application\Listener\ApproveInvoice;
+use App\Modules\Invoices\Application\Listener\RejectInvoice;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -16,8 +18,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        EntityApproved::class => [
+            ApproveInvoice::class,
+        ],
+        EntityRejected::class => [
+            RejectInvoice::class,
         ],
     ];
 
